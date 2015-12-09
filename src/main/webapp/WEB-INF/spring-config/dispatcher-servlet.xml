@@ -53,9 +53,4 @@
           class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
-
-    <bean id="jdbcMotorcycleDao" class="com.motorcycles.repositories.JdbcMotorcycleDao">
-        <property name="dataSource" ref="dataSource"/>
-    </bean>
-
 </beans>

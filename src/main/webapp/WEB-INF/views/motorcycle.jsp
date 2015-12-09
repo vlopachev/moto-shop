@@ -15,7 +15,7 @@
     </div>
     <div>
         <form:select path="${brand.name}">
-            <form:options items="${brands}"/>
+            <form:options items="${brandsMotorcycles}"/>
         </form:select>
         <a href="newBrand">Добавить производителя мотоцикла</a>
     </div>

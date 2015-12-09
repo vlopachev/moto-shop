@@ -1,12 +1,10 @@
 package com.motorcycles.controllers;
 
-import com.motorcycles.repositories.MotorcyclesDao;
 import com.motorcycles.entities.*;
-import com.motorcycles.services.InsertMotorcycle;
+import com.motorcycles.services.CatalogServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -19,31 +17,13 @@ public class InsertController {
     private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     @Autowired
-    @Qualifier("jdbcMotorcycleDao")
-    private MotorcyclesDao dao;
-
-
-    @Autowired
-    private InsertMotorcycle service;
-
+    private CatalogServiceImpl service;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     private ModelAndView main(){
-        ModelAndView mav = new ModelAndView("motorcycle");
-
-
-
-        mav.addObject("classesMotorcycles", service.getAllClassesMotorcycles());
-        mav.addObject("brands", service.getAllBrandsMotorcycles());
-        mav.addObject("motorTypes", service.getAllMotorTypes());
-        mav.addObject("locationCylindersTypes", service.getAllLocationCylindersTypes());
-        mav.addObject("driveTypes", service.getAllDriveTypes());
-        mav.addObject("coolingTypes", service.getAllCoolingTypes());
-        mav.addObject("fuelSupplyTypes", service.getAllFuelSupplyTypes());
-        mav.addObject("frontSuspensionTypes", service.getAllFrontSuspensionTypes());
-        mav.addObject("backSuspensionTypes", service.getAllBackSuspensionTypes());
-
-        return mav;
+        ModelAndView model = new ModelAndView("motorcycle");
+        model.addAllObjects(service.getAllCatalogs());
+        return model;
     }
 
     @ModelAttribute
@@ -62,101 +42,101 @@ public class InsertController {
 
     @RequestMapping(value = "/newClassMoto", method = RequestMethod.GET)
     private String newClassMoto() {
-        return "class_motorcycle";
+        return "classes_motorcycles";
     }
 
     @RequestMapping(value = "/saveClassMoto", method = RequestMethod.POST)
     public String saveClassMoto(ClassMotorcycle classMotorcycle) {
-        dao.addClassMotorcycle(classMotorcycle);
+        service.getClassMotorcycleRepository().save(classMotorcycle);
         return "redirect:/";
     }
 
 
     @RequestMapping(value = "/newBrand", method = RequestMethod.GET)
     private String newBrand() {
-        return "brand";
+        return "brands_motorcycles";
     }
 
     @RequestMapping(value = "/saveBrand", method = RequestMethod.POST)
     private String saveBrand(Brand brand) {
-        dao.addBrand(brand);
+        service.getBrandRepository().save(brand);
         return "redirect:/";
     }
 
     @RequestMapping(value = "/newMotorType", method = RequestMethod.GET)
     private String newMotorType(){
-        return "motor_type";
+        return "motor_types";
     }
 
     @RequestMapping(value = "/saveMotorType", method = RequestMethod.POST)
     private String saveMotorType(MotorType motorType){
-        dao.addMotorType(motorType);
+        service.getMotorTypeRepository().save(motorType);
         return "redirect:/";
     }
 
     @RequestMapping(value = "/newLocationCylindersType", method = RequestMethod.GET)
     private String newLocationCylindersType(){
-        return "location_cylinders_type";
+        return "location_cylinders_types";
     }
 
     @RequestMapping(value = "/saveLocationCylindersType", method = RequestMethod.POST)
     private String saveLocationCylindersType(LocationCylindersType locationCylindersType){
-        dao.addLocationCylindersType(locationCylindersType);
+        service.getLocationCylindersTypeRepository().save(locationCylindersType);
         return "redirect:/";
     }
 
     @RequestMapping(value = "/newDriveType", method = RequestMethod.GET)
     private String newDriveType(){
-        return "drive_type";
+        return "drive_types";
     }
 
     @RequestMapping(value = "/saveDriveType", method = RequestMethod.POST)
     private String saveDriveType(DriveType driveType){
-        dao.addDriveType(driveType);
+        service.getDriveTypeRepository().save(driveType);
         return "redirect:/";
     }
 
     @RequestMapping(value = "/newCoolingType", method = RequestMethod.GET)
     private String newCoolingType(){
-        return "cooling_type";
+        return "cooling_types";
     }
 
     @RequestMapping(value = "/saveCoolingType", method = RequestMethod.POST)
     private String saveCoolingType(CoolingType coolingType){
-        dao.addCoolingType(coolingType);
+        service.getCoolingTypeRepository().save(coolingType);
         return "redirect:/";
     }
 
     @RequestMapping(value = "/newFuelSupplyType", method = RequestMethod.GET)
     private String newFuelSupplyType(ModelAndView model){
-        return "fuel_supply_type";
+        return "fuel_supply_types";
     }
 
     @RequestMapping(value = "/saveFuelSupplyType", method = RequestMethod.POST)
     private String saveFuelSupplyType(FuelSupplyType fuelSupplyType){
-        dao.addFuelSupplyType(fuelSupplyType);
+        service.getFuelSupplyTypeRepository().save(fuelSupplyType);
         return "redirect:/";
     }
 
     @RequestMapping(value = "/newFrontSuspensionType", method = RequestMethod.GET)
     private String newFrontSuspensionType(){
-        return "front_suspension_type";
+        return "front_suspension_types";
     }
 
     @RequestMapping(value = "/saveFrontSuspensionType", method = RequestMethod.POST)
     private String saveFrontSuspensionType(FrontSuspensionType frontSuspensionType){
-        dao.addFrontSuspensionType(frontSuspensionType);
+        service.getFrontSuspensionTypeRepository().save(frontSuspensionType);
         return "redirect:/";
     }
 
     @RequestMapping(value = "/newBackSuspensionType", method = RequestMethod.GET)
     private String newBackSuspensionType(){
-        return "back_suspension_type";
+        return "back_suspension_types";
     }
 
     @RequestMapping(value = "/saveBackSuspensionType", method = RequestMethod.POST)
     private String saveBackSuspensionType(BackSuspensionType backSuspensionType){
-        dao.addBackSuspensionType(backSuspensionType);
+        service.getBackSuspensionTypeRepository().save(backSuspensionType);
         return "redirect:/";
     }
 
