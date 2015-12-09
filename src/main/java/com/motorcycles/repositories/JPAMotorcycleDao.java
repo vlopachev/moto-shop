@@ -18,7 +18,7 @@ public class JPAMotorcycleDao implements MotorcyclesDao {
     private EntityManager em;
 
     @Autowired
-    CMRepository cmRepository;
+    ClassMotorcycleRepository cmRepository;
 
 
 
