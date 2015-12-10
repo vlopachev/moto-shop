@@ -1,10 +1,12 @@
 package com.motorcycles.entities;
 
+import com.motorcycles.factories.interfaces.PartMotorcycle;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "fuel_supply_type", schema = "", catalog = "moto_shop")
-public class FuelSupplyType {
+public class FuelSupplyType implements PartMotorcycle{
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)

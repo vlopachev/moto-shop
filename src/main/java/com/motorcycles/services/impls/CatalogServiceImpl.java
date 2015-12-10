@@ -1,15 +1,21 @@
-package com.motorcycles.services;
+package com.motorcycles.services.impls;
 
 import com.motorcycles.entities.*;
+import com.motorcycles.factories.interfaces.PartMotorcycleFactory;
+import com.motorcycles.factories.interfaces.PartMotorcycle;
+import com.motorcycles.factories.enums.PartsMotorcycle;
 import com.motorcycles.repositories.catalogs.*;
+import com.motorcycles.services.interfaces.CatalogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
-public class CatalogServiceImpl implements CatalogService{
+public class CatalogServiceImpl implements CatalogService {
     @Autowired
     ClassMotorcycleRepository classMotorcycleRepository;
     @Autowired
@@ -42,6 +48,24 @@ public class CatalogServiceImpl implements CatalogService{
     EquipmentRepository equipmentRepository;
     @Autowired
     PicturesRepository picturesRepository;
+    @Autowired
+    PartMotorcycleFactory partsFactory;
+
+    public List<PartMotorcycle> createAllPartsMotorcycle(){
+        List<PartMotorcycle> result = new ArrayList<>();
+        result.add(partsFactory.getPartMotorcycle(PartsMotorcycle.CLASS_MOTORCYCLE));
+        result.add(partsFactory.getPartMotorcycle(PartsMotorcycle.BRAND_MOTORCYCLE));
+        result.add(partsFactory.getPartMotorcycle(PartsMotorcycle.MOTOR_TYPE));
+        result.add(partsFactory.getPartMotorcycle(PartsMotorcycle.LOCATION_CYLINDERS_TYPE));
+        result.add(partsFactory.getPartMotorcycle(PartsMotorcycle.DRIVE_TYPE));
+        result.add(partsFactory.getPartMotorcycle(PartsMotorcycle.COOLING_TYPE));
+        result.add(partsFactory.getPartMotorcycle(PartsMotorcycle.FUEL_SUPPLY_TYPE));
+        result.add(partsFactory.getPartMotorcycle(PartsMotorcycle.FRONT_SUSPENSION_TYPE));
+        result.add(partsFactory.getPartMotorcycle(PartsMotorcycle.BACK_SUSPENSION_TYPE));
+        return result;
+    }
+
+
 
     @Override
     public Map<String, Map<Integer,String>> getAllCatalogs(){

@@ -1,10 +1,12 @@
 package com.motorcycles.entities;
 
+import com.motorcycles.factories.interfaces.PartMotorcycle;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "back_suspension_type", catalog = "moto_shop")
-public class BackSuspensionType {
+public class BackSuspensionType implements PartMotorcycle{
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)

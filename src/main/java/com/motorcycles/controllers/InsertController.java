@@ -1,7 +1,8 @@
 package com.motorcycles.controllers;
 
 import com.motorcycles.entities.*;
-import com.motorcycles.services.CatalogServiceImpl;
+import com.motorcycles.services.impls.CatalogServiceImpl;
+import com.motorcycles.services.interfaces.MotorcycleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,27 +18,23 @@ public class InsertController {
     private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     @Autowired
-    private CatalogServiceImpl service;
+    private CatalogServiceImpl catalogService;
+
+    @Autowired
+    private MotorcycleService motorcycleService;
+
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    private ModelAndView main(){
-        ModelAndView model = new ModelAndView("motorcycle");
-        model.addAllObjects(service.getAllCatalogs());
+    private ModelAndView main(ModelAndView model){
+        model.setViewName("motorcycle");
+        model.addAllObjects(catalogService.getAllCatalogs());
         return model;
     }
 
     @ModelAttribute
     private void populateModel(Model model){
-        model.addAttribute(new Motorcycle());
-        model.addAttribute(new ClassMotorcycle());
-        model.addAttribute(new Brand());
-        model.addAttribute(new MotorType());
-        model.addAttribute(new LocationCylindersType());
-        model.addAttribute(new DriveType());
-        model.addAttribute(new CoolingType());
-        model.addAttribute(new FuelSupplyType());
-        model.addAttribute(new FrontSuspensionType());
-        model.addAttribute(new BackSuspensionType());
+        model.addAttribute(motorcycleService.getMotorcycle());
+        model.addAllAttributes(catalogService.createAllPartsMotorcycle());
     }
 
     @RequestMapping(value = "/newClassMoto", method = RequestMethod.GET)
@@ -47,7 +44,7 @@ public class InsertController {
 
     @RequestMapping(value = "/saveClassMoto", method = RequestMethod.POST)
     public String saveClassMoto(ClassMotorcycle classMotorcycle) {
-        service.getClassMotorcycleRepository().save(classMotorcycle);
+        catalogService.getClassMotorcycleRepository().save(classMotorcycle);
         return "redirect:/";
     }
 
@@ -59,7 +56,7 @@ public class InsertController {
 
     @RequestMapping(value = "/saveBrand", method = RequestMethod.POST)
     private String saveBrand(Brand brand) {
-        service.getBrandRepository().save(brand);
+        catalogService.getBrandRepository().save(brand);
         return "redirect:/";
     }
 
@@ -70,7 +67,7 @@ public class InsertController {
 
     @RequestMapping(value = "/saveMotorType", method = RequestMethod.POST)
     private String saveMotorType(MotorType motorType){
-        service.getMotorTypeRepository().save(motorType);
+        catalogService.getMotorTypeRepository().save(motorType);
         return "redirect:/";
     }
 
@@ -81,7 +78,7 @@ public class InsertController {
 
     @RequestMapping(value = "/saveLocationCylindersType", method = RequestMethod.POST)
     private String saveLocationCylindersType(LocationCylindersType locationCylindersType){
-        service.getLocationCylindersTypeRepository().save(locationCylindersType);
+        catalogService.getLocationCylindersTypeRepository().save(locationCylindersType);
         return "redirect:/";
     }
 
@@ -92,7 +89,7 @@ public class InsertController {
 
     @RequestMapping(value = "/saveDriveType", method = RequestMethod.POST)
     private String saveDriveType(DriveType driveType){
-        service.getDriveTypeRepository().save(driveType);
+        catalogService.getDriveTypeRepository().save(driveType);
         return "redirect:/";
     }
 
@@ -103,7 +100,7 @@ public class InsertController {
 
     @RequestMapping(value = "/saveCoolingType", method = RequestMethod.POST)
     private String saveCoolingType(CoolingType coolingType){
-        service.getCoolingTypeRepository().save(coolingType);
+        catalogService.getCoolingTypeRepository().save(coolingType);
         return "redirect:/";
     }
 
@@ -114,7 +111,7 @@ public class InsertController {
 
     @RequestMapping(value = "/saveFuelSupplyType", method = RequestMethod.POST)
     private String saveFuelSupplyType(FuelSupplyType fuelSupplyType){
-        service.getFuelSupplyTypeRepository().save(fuelSupplyType);
+        catalogService.getFuelSupplyTypeRepository().save(fuelSupplyType);
         return "redirect:/";
     }
 
@@ -125,7 +122,7 @@ public class InsertController {
 
     @RequestMapping(value = "/saveFrontSuspensionType", method = RequestMethod.POST)
     private String saveFrontSuspensionType(FrontSuspensionType frontSuspensionType){
-        service.getFrontSuspensionTypeRepository().save(frontSuspensionType);
+        catalogService.getFrontSuspensionTypeRepository().save(frontSuspensionType);
         return "redirect:/";
     }
 
@@ -136,7 +133,7 @@ public class InsertController {
 
     @RequestMapping(value = "/saveBackSuspensionType", method = RequestMethod.POST)
     private String saveBackSuspensionType(BackSuspensionType backSuspensionType){
-        service.getBackSuspensionTypeRepository().save(backSuspensionType);
+        catalogService.getBackSuspensionTypeRepository().save(backSuspensionType);
         return "redirect:/";
     }
 

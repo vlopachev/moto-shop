@@ -1,4 +1,4 @@
-package com.motorcycles.services;
+package com.motorcycles.services.interfaces;
 
 import java.util.Map;
 
