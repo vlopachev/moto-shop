@@ -24,9 +24,7 @@ public class InsertController {
 
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
-    private String main(@ModelAttribute Motorcycle motorcycle
-            ,@ModelAttribute FrontSuspension frontSuspension
-            ,@ModelAttribute BackSuspension backSuspension){
+    private String main(@ModelAttribute Motorcycle motorcycle){
         return "motorcycle";
     }
 
@@ -136,9 +134,7 @@ public class InsertController {
     }
 
     @RequestMapping(value = "/saveMotorcycle", method = RequestMethod.POST)
-    private String saveMotorcycle(Motorcycle motorcycle, FrontSuspension frontSuspension) {
-
-
+    private String saveMotorcycle(Motorcycle motorcycle) {
           motorcycleService.saveMotorcycle(motorcycle);
         return "redirect:/admin";
     }
