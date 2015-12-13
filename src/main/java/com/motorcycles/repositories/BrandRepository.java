@@ -1,4 +1,4 @@
-package com.motorcycles.repositories.catalogs;
+package com.motorcycles.repositories;
 
 import com.motorcycles.entities.Brand;
 import org.springframework.data.repository.CrudRepository;

@@ -1,12 +1,10 @@
 package com.motorcycles.entities;
 
-import com.motorcycles.factories.interfaces.PartMotorcycle;
-
 import javax.persistence.*;
 
 @Entity
 @Table(name = "brake_type", catalog = "moto_shop")
-public class BrakeType implements PartMotorcycle{
+public class BrakeType {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)

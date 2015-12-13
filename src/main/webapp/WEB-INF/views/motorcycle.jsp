@@ -6,67 +6,98 @@
     <title>Добавление мотоцикла</title>
 </head>
 <body>
-<form:form method="post" modelAttribute="motorcycle" action="insert_motorcycle">
+<form:form method="post" modelAttribute="motorcycle" action="saveMotorcycle">
+    <form:hidden path="id"/>
     <div>
-        <form:select path="${classMotorcycle.name}">
+        <form:label path="modelName">Модель мотоцикла</form:label>
+        <form:input path="modelName"/>
+    </div>
+
+
+    <div>
+        <form:select path="classMotorcycle.id">
             <form:options items="${classesMotorcycles}"/>
         </form:select>
         <a href="newClassMoto">Добавить новый класс мотоцикла</a>
     </div>
     <div>
-        <form:select path="${brand.name}">
+        <form:select path="brand.id">
             <form:options items="${brandsMotorcycles}"/>
         </form:select>
         <a href="newBrand">Добавить производителя мотоцикла</a>
     </div>
 
     <div>
-        <form:select path="${motorType.name}">
+        <form:select path="motorType.id">
             <form:options items="${motorTypes}"/>
         </form:select>
         <a href="newMotorType">Добавить тип двигателя</a>
     </div>
     <div>
-        <form:select path="${locationCylindersType.name}">
+        <form:select path="locationCylindersType.id">
             <form:options items="${locationCylindersTypes}"/>
         </form:select>
         <a href="newLocationCylindersType">Добавить тип расположения цилиндров</a>
     </div>
     <div>
-        <form:select path="${driveType.name}">
+        <form:label path="motorCapacity">Объём двигателя</form:label>
+        <form:input path="motorCapacity"/>
+    </div>
+    <div>
+        <form:label path="power">Мощность</form:label>
+        <form:input path="power"/>
+    </div>
+    <div>
+        <form:label path="maxSpeed">Максимальная скорость</form:label>
+        <form:input path="maxSpeed"/>
+    </div>
+    <div>
+        <form:label path="numberCylinders">Количество цилиндров</form:label>
+        <form:input path="numberCylinders"/>
+    </div>
+    <div>
+        <form:select path="driveType.id">
             <form:options items="${driveTypes}"/>
         </form:select>
         <a href="newDriveType">Добавить тип привода</a>
     </div>
     <div>
-        <form:select path="${coolingType.name}">
+       <form:checkbox path="electricStarter" label="Электрический стартер"/>
+    </div>
+    <div>
+        <form:select path="coolingType.id">
             <form:options items="${coolingTypes}"/>
         </form:select>
         <a href="newCoolingType">Добавить тип охлаждения</a>
     </div>
     <div>
-        <form:select path="${fuelSupplyType.name}">
+        <form:select path="fuelSupplyType.id">
             <form:options items="${fuelSupplyTypes}"/>
         </form:select>
         <a href="newFuelSupplyType">Добавить тип подачи топлива</a>
     </div>
     <div>
-        <form:select path="${frontSuspensionType.name}">
+        <form:label path="fuelTankCapacity">Объём топливного бака</form:label>
+        <form:input path="fuelTankCapacity"/>
+    </div>
+    <div>
+        <form:select path="frontSuspensionType.id">
             <form:options items="${frontSuspensionTypes}"/>
         </form:select>
         <a href="newFrontSuspensionType">Добавить тип передней подвески</a>
     </div>
     <div>
-        <form:select path="${backSuspensionType.name}">
+        <form:checkbox path="controlFrontSuspension" label="Контроль передней подвески"/>
+    </div>
+    <div>
+        <form:select path="backSuspensionType.id">
             <form:options items="${backSuspensionTypes}"/>
         </form:select>
         <a href="newBackSuspensionType">Добавить тип задней подвески</a>
     </div>
-
-
-
-
-
+    <div>
+        <form:checkbox path="controlBackSuspension" label="Контроль задней подвески"/>
+    </div>
     <input type="submit" value="Добавить мотоцикл">
 </form:form>
 </body>

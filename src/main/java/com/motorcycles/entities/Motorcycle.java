@@ -1,5 +1,7 @@
 package com.motorcycles.entities;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -16,91 +18,97 @@ public class Motorcycle {
     private String modelName;
 
     @ManyToOne
-    @JoinColumn(name = "class_motorcycle_id", nullable = false)
+    @JoinColumn(name = "class_motorcycle_id")
     private ClassMotorcycle classMotorcycle;
 
     @ManyToOne
-    @JoinColumn(name = "brand_id", nullable = false)
+    @JoinColumn(name = "brand_id")
     private Brand brand;
 
     @ManyToOne
-    @JoinColumn(name = "motor_type_id", nullable = false)
+    @JoinColumn(name = "motor_type_id")
     private MotorType motorType;
 
     @ManyToOne
-    @JoinColumn(name = "location_cylinders_type_id", nullable = false)
+    @JoinColumn(name = "location_cylinders_type_id")
     private LocationCylindersType locationCylindersType;
 
-    @Column(name = "motor_capacity", nullable = false, insertable = true, updatable = true)
+    @Column(name = "motor_capacity", insertable = true, updatable = true)
     private Integer motorCapacity;
 
-    @Column(name = "power", nullable = false, insertable = true, updatable = true, precision = 0)
+    @Column(name = "power", insertable = true, updatable = true, precision = 0)
     private Double power;
 
-    @Column(name = "max_speed", nullable = false, insertable = true, updatable = true)
+    @Column(name = "max_speed", insertable = true, updatable = true)
     private Integer maxSpeed;
 
-    @Column(name = "number_cylinders", nullable = false, insertable = true, updatable = true)
+    @Column(name = "number_cylinders", insertable = true, updatable = true)
     private Integer numberCylinders;
 
     @ManyToOne
-    @JoinColumn(name = "drive_type_id", nullable = false)
+    @JoinColumn(name = "drive_type_id")
     private DriveType driveType;
 
-    @Column(name = "electric_starter", nullable = false, insertable = true, updatable = true)
+    @Column(name = "electric_starter", insertable = true, updatable = true)
     private Boolean electricStarter;
 
     @ManyToOne
-    @JoinColumn(name = "cooling_type_id", nullable = false)
+    @JoinColumn(name = "cooling_type_id")
     private CoolingType coolingType;
 
     @ManyToOne
-    @JoinColumn(name = "fuel_supply_type_id", nullable = false)
+    @JoinColumn(name = "fuel_supply_type_id")
     private FuelSupplyType fuelSupplyType;
 
-    @Column(name = "fuel_tank_capacity", nullable = false, insertable = true, updatable = true, precision = 0)
+    @Column(name = "fuel_tank_capacity", insertable = true, updatable = true, precision = 0)
     private Double fuelTankCapacity;
 
     @ManyToOne
-    @JoinColumn(name = "front_suspension_id", nullable = false)
-    private FrontSuspension frontSuspension;
+    @JoinColumn(name = "front_suspension_type_id")
+    private FrontSuspensionType frontSuspensionType;
+
+    @Column(name = "control_front_suspension", insertable = true, updatable = true)
+    private Boolean controlFrontSuspension;
 
     @ManyToOne
-    @JoinColumn(name = "back_suspension_id", nullable = false)
-    private BackSuspension backSuspension;
+    @JoinColumn(name = "back_suspension_type_id")
+    private BackSuspensionType backSuspensionType;
+
+    @Column(name = "control_back_suspension", insertable = true, updatable = true)
+    private Boolean controlBackSuspension;
 
     @ManyToOne
-    @JoinColumn(name = "front_brake_type_id", nullable = false)
-    private BrakeType fronBrakeType;
+    @JoinColumn(name = "front_brake_type_id")
+    private BrakeType frontBrakeType;
 
     @ManyToOne
-    @JoinColumn(name = "back_brake_type_id", nullable = false)
+    @JoinColumn(name = "back_brake_type_id")
     private BrakeType backBrakeType;
 
     @ManyToOne
-    @JoinColumn(name = "front_wheel_id", nullable = false)
+    @JoinColumn(name = "front_wheel_id")
     private FrontWheel frontWheel;
 
     @ManyToOne
-    @JoinColumn(name = "back_wheel_id", nullable = false)
+    @JoinColumn(name = "back_wheel_id")
     private BackWheel backWheel;
 
-    @Column(name = "wheelbase", nullable = false, insertable = true, updatable = true, precision = 0)
+    @Column(name = "wheelbase", insertable = true, updatable = true, precision = 0)
     private Double wheelbase;
 
-    @Column(name = "ground_clearance", nullable = false, insertable = true, updatable = true, precision = 0)
+    @Column(name = "ground_clearance", insertable = true, updatable = true, precision = 0)
     private Double groundClearance;
 
-    @Column(name = "length", nullable = false, insertable = true, updatable = true, precision = 0)
+    @Column(name = "length", insertable = true, updatable = true, precision = 0)
     private Double length;
 
-    @Column(name = "width", nullable = false, insertable = true, updatable = true, precision = 0)
+    @Column(name = "width", insertable = true, updatable = true, precision = 0)
     private Double width;
 
-    @Column(name = "height", nullable = false, insertable = true, updatable = true, precision = 0)
+    @Column(name = "height", insertable = true, updatable = true, precision = 0)
     private Double height;
 
-    @Column(name = "dry_weight", nullable = false, insertable = true, updatable = true, precision = 0)
+    @Column(name = "dry_weight", insertable = true, updatable = true, precision = 0)
     private Double dryWeight;
 
     @ManyToMany
@@ -235,28 +243,44 @@ public class Motorcycle {
         this.fuelTankCapacity = fuelTankCapacity;
     }
 
-    public FrontSuspension getFrontSuspension() {
-        return frontSuspension;
+    public FrontSuspensionType getFrontSuspensionType() {
+        return frontSuspensionType;
     }
 
-    public void setFrontSuspension(FrontSuspension frontSuspension) {
-        this.frontSuspension = frontSuspension;
+    public void setFrontSuspensionType(FrontSuspensionType frontSuspensionType) {
+        this.frontSuspensionType = frontSuspensionType;
     }
 
-    public BackSuspension getBackSuspension() {
-        return backSuspension;
+    public Boolean getControlFrontSuspension() {
+        return controlFrontSuspension;
     }
 
-    public void setBackSuspension(BackSuspension backSuspension) {
-        this.backSuspension = backSuspension;
+    public void setControlFrontSuspension(Boolean controlFrontSuspension) {
+        this.controlFrontSuspension = controlFrontSuspension;
     }
 
-    public BrakeType getFronBrakeType() {
-        return fronBrakeType;
+    public BackSuspensionType getBackSuspensionType() {
+        return backSuspensionType;
     }
 
-    public void setFronBrakeType(BrakeType fronBrakeType) {
-        this.fronBrakeType = fronBrakeType;
+    public void setBackSuspensionType(BackSuspensionType backSuspensionType) {
+        this.backSuspensionType = backSuspensionType;
+    }
+
+    public Boolean getControlBackSuspension() {
+        return controlBackSuspension;
+    }
+
+    public void setControlBackSuspension(Boolean controlBackSuspension) {
+        this.controlBackSuspension = controlBackSuspension;
+    }
+
+    public BrakeType getFrontBrakeType() {
+        return frontBrakeType;
+    }
+
+    public void setFrontBrakeType(BrakeType frontBrakeType) {
+        this.frontBrakeType = frontBrakeType;
     }
 
     public BrakeType getBackBrakeType() {
