@@ -26,11 +26,7 @@ public class CatalogServiceImpl implements CatalogService {
     @Autowired
     FuelSupplyTypeRepository fuelSupplyTypeRepository;
     @Autowired
-    FrontSuspensionRepository frontSuspensionRepository;
-    @Autowired
     FrontSuspensionTypeRepository frontSuspensionTypeRepository;
-    @Autowired
-    BackSuspensionRepository backSuspensionRepository;
     @Autowired
     BackSuspensionTypeRepository backSuspensionTypeRepository;
     @Autowired
@@ -170,16 +166,8 @@ public class CatalogServiceImpl implements CatalogService {
         return fuelSupplyTypeRepository;
     }
 
-    public FrontSuspensionRepository getFrontSuspensionRepository() {
-        return frontSuspensionRepository;
-    }
-
     public FrontSuspensionTypeRepository getFrontSuspensionTypeRepository() {
         return frontSuspensionTypeRepository;
-    }
-
-    public BackSuspensionRepository getBackSuspensionRepository() {
-        return backSuspensionRepository;
     }
 
     public BackSuspensionTypeRepository getBackSuspensionTypeRepository() {

@@ -1,7 +1,5 @@
 package com.motorcycles.entities;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
-
 import javax.persistence.*;
 import java.util.Set;
 
@@ -14,7 +12,7 @@ public class Motorcycle {
     @Column(name = "id", nullable = false, insertable = true, updatable = true)
     private Integer id;
 
-    @Column(name = "model_name", nullable = false, insertable = true, updatable = true, length = 255)
+    @Column(name = "model_name", insertable = true, updatable = true, length = 255)
     private String modelName;
 
     @ManyToOne
