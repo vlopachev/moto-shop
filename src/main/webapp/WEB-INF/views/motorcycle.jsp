@@ -100,5 +100,21 @@
     </div>
     <input type="submit" value="Добавить мотоцикл">
 </form:form>
+
+    <div>
+        <c:forEach var="moto" items="${motorcycles}">
+            <div>${moto.modelName}</div>
+            <div>${moto.classMotorcycle.name}</div>
+            <div>
+                <c:if test="${moto.electricStarter}">
+                    <input type="checkbox" checked/>
+                </c:if>
+                <c:if test="${!moto.electricStarter}">
+                    <input type="checkbox"/>
+                </c:if>
+                Электрический стартер
+            </div>
+        </c:forEach>
+    </div>
 </body>
 </html>
