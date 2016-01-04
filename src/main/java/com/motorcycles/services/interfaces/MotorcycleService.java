@@ -2,17 +2,20 @@ package com.motorcycles.services.interfaces;
 
 import com.motorcycles.entities.*;
 
+import java.util.List;
+import java.util.Map;
+
 public interface MotorcycleService {
-    Iterable<Motorcycle> getAllMotorcycles();
-    Iterable<ClassMotorcycle> getAllClassesMotorcycles();
-    Iterable<Brand> getAllBrandsMotorcycles();
-    Iterable<MotorType> getAllMotorTypes();
-    Iterable<LocationCylindersType> getAllLocationCylindersTypes();
-    Iterable<DriveType> getAllDriveTypes();
-    Iterable<CoolingType> getAllCoolingTypes();
-    Iterable<FuelSupplyType> getAllFuelSupplyTypes();
-    Iterable<FrontSuspensionType> getAllFrontSuspensionTypes();
-    Iterable<BackSuspensionType> getAllBackSuspensionTypes();
+    List<Motorcycle> getAllMotorcycles();
+    Map<Integer,String> getAllClassesMotorcycles();
+    Map<Integer,String> getAllBrandsMotorcycles();
+    Map<Integer,String> getAllMotorTypes();
+    Map<Integer,String> getAllLocationCylindersTypes();
+    Map<Integer,String> getAllDriveTypes();
+    Map<Integer,String> getAllCoolingTypes();
+    Map<Integer,String> getAllFuelSupplyTypes();
+    Map<Integer,String> getAllFrontSuspensionTypes();
+    Map<Integer,String> getAllBackSuspensionTypes();
 
 
     void save(Motorcycle motorcycle);

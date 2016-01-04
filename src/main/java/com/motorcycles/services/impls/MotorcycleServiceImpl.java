@@ -6,6 +6,11 @@ import com.motorcycles.services.interfaces.MotorcycleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 @Service
 public class MotorcycleServiceImpl implements MotorcycleService {
     @Autowired
@@ -40,8 +45,93 @@ public class MotorcycleServiceImpl implements MotorcycleService {
     PicturesRepository picturesRepository;
 
     @Override
-    public Iterable<Motorcycle> getAllMotorcycles() {
-        return motorcyclesRepository.findAll();
+    public List<Motorcycle> getAllMotorcycles() {
+        List<Motorcycle> result = new ArrayList<>();
+        for (Motorcycle motorcycle : motorcyclesRepository.findAll()) {
+            result.add(motorcycle);
+        }
+        return result;
+    }
+
+    @Override
+    public Map<Integer, String> getAllClassesMotorcycles(){
+        Map<Integer, String> resultMap = new HashMap<>();
+        for (ClassMotorcycle pair : classMotorcycleRepository.findAll()) {
+            resultMap.put(pair.getId(), pair.getName());
+        }
+        return resultMap;
+    }
+
+    @Override
+    public Map<Integer, String> getAllBrandsMotorcycles(){
+        Map<Integer, String> resultMap = new HashMap<>();
+        for (Brand pair : brandRepository.findAll()) {
+            resultMap.put(pair.getId(), pair.getName());
+        }
+        return resultMap;
+    }
+
+    @Override
+    public Map<Integer, String> getAllMotorTypes(){
+        Map<Integer, String> resultMap = new HashMap<>();
+        for (MotorType pair : motorTypeRepository.findAll()) {
+            resultMap.put(pair.getId(), pair.getName());
+        }
+        return resultMap;
+    }
+
+    @Override
+    public Map<Integer, String> getAllLocationCylindersTypes(){
+        Map<Integer, String> resultMap = new HashMap<>();
+        for (LocationCylindersType pair : locationCylindersTypeRepository.findAll()) {
+            resultMap.put(pair.getId(), pair.getName());
+        }
+        return resultMap;
+    }
+
+    @Override
+    public Map<Integer, String> getAllDriveTypes(){
+        Map<Integer, String> resultMap = new HashMap<>();
+        for (DriveType pair : driveTypeRepository.findAll()) {
+            resultMap.put(pair.getId(), pair.getName());
+        }
+        return resultMap;
+    }
+
+    @Override
+    public Map<Integer, String> getAllCoolingTypes(){
+        Map<Integer, String> resultMap = new HashMap<>();
+        for (CoolingType pair : coolingTypeRepository.findAll()) {
+            resultMap.put(pair.getId(), pair.getName());
+        }
+        return resultMap;
+    }
+
+    @Override
+    public Map<Integer, String> getAllFuelSupplyTypes(){
+        Map<Integer, String> resultMap = new HashMap<>();
+        for (FuelSupplyType pair : fuelSupplyTypeRepository.findAll()) {
+            resultMap.put(pair.getId(), pair.getName());
+        }
+        return resultMap;
+    }
+
+    @Override
+    public Map<Integer, String> getAllFrontSuspensionTypes(){
+        Map<Integer, String> resultMap = new HashMap<>();
+        for (FrontSuspensionType pair : frontSuspensionTypeRepository.findAll()) {
+            resultMap.put(pair.getId(), pair.getName());
+        }
+        return resultMap;
+    }
+
+    @Override
+    public Map<Integer, String> getAllBackSuspensionTypes(){
+        Map<Integer, String> resultMap = new HashMap<>();
+        for (BackSuspensionType pair : backSuspensionTypeRepository.findAll()) {
+            resultMap.put(pair.getId(), pair.getName());
+        }
+        return resultMap;
     }
 
     @Override
@@ -93,51 +183,4 @@ public class MotorcycleServiceImpl implements MotorcycleService {
     public void save(BackSuspensionType backSuspensionType) {
         backSuspensionTypeRepository.save(backSuspensionType);
     }
-
-    @Override
-    public Iterable<ClassMotorcycle> getAllClassesMotorcycles(){
-        return classMotorcycleRepository.findAll();
-    }
-
-    @Override
-    public Iterable<Brand> getAllBrandsMotorcycles(){
-        return brandRepository.findAll();
-    }
-
-    @Override
-    public Iterable<MotorType> getAllMotorTypes(){
-        return motorTypeRepository.findAll();
-    }
-
-    @Override
-    public Iterable<LocationCylindersType> getAllLocationCylindersTypes(){
-        return locationCylindersTypeRepository.findAll();
-    }
-
-    @Override
-    public Iterable<DriveType> getAllDriveTypes(){
-        return driveTypeRepository.findAll();
-    }
-
-    @Override
-    public Iterable<CoolingType> getAllCoolingTypes(){
-        return coolingTypeRepository.findAll();
-    }
-
-    @Override
-    public Iterable<FuelSupplyType> getAllFuelSupplyTypes(){
-        return fuelSupplyTypeRepository.findAll();
-    }
-
-    @Override
-    public Iterable<FrontSuspensionType> getAllFrontSuspensionTypes(){
-        return frontSuspensionTypeRepository.findAll();
-    }
-
-    @Override
-    public Iterable<BackSuspensionType> getAllBackSuspensionTypes(){
-        return backSuspensionTypeRepository.findAll();
-    }
-
-
 }
