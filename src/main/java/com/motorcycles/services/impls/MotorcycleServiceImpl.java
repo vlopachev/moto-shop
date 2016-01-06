@@ -183,4 +183,9 @@ public class MotorcycleServiceImpl implements MotorcycleService {
     public void save(BackSuspensionType backSuspensionType) {
         backSuspensionTypeRepository.save(backSuspensionType);
     }
+
+    @Override
+    public void deleteMotorcycle(Integer Id) {
+        motorcyclesRepository.delete(Id);
+    }
 }

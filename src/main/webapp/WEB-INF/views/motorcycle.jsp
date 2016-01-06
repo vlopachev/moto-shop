@@ -4,6 +4,7 @@
 <html>
 <head>
     <title>Добавление мотоцикла</title>
+    <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
 </head>
 <body>
 <form:form method="post" modelAttribute="motorcycle" action="saveMotorcycle">
@@ -62,7 +63,7 @@
         <a href="newDriveType">Добавить тип привода</a>
     </div>
     <div>
-       <form:checkbox path="electricStarter" label="Электрический стартер"/>
+        <form:checkbox path="electricStarter" label="Электрический стартер"/>
     </div>
     <div>
         <form:select path="coolingType.id">
@@ -101,20 +102,28 @@
     <input type="submit" value="Добавить мотоцикл">
 </form:form>
 
-    <div>
+<div class="out-moto">
+    <table>
+        <tr>
+            <th>Модель мотоцикла</th>
+            <th>Класс мотоцикла</th>
+            <th style="width: 30px">Электрический стартер</th>
+        </tr>
         <c:forEach var="moto" items="${motorcycles}">
-            <div>${moto.modelName}</div>
-            <div>${moto.classMotorcycle.name}</div>
-            <div>
-                <c:if test="${moto.electricStarter}">
+            <tr>
+                <td>${moto.modelName}</td>
+                <td>${moto.classMotorcycle.name}</td>
+                <td><c:if test="${moto.electricStarter}">
                     <input type="checkbox" checked/>
                 </c:if>
-                <c:if test="${!moto.electricStarter}">
-                    <input type="checkbox"/>
-                </c:if>
-                Электрический стартер
-            </div>
+                    <c:if test="${!moto.electricStarter}">
+                        <input type="checkbox"/>
+                    </c:if>
+                </td>
+                <td><a href="delete/${moto.id}">Удалить</a></td>
+            </tr>
         </c:forEach>
-    </div>
+    </table>
+</div>
 </body>
 </html>

@@ -28,4 +28,6 @@ public interface MotorcycleService {
     void save(FuelSupplyType fuelSupplyType);
     void save(FrontSuspensionType frontSuspensionType);
     void save(BackSuspensionType backSuspensionType);
+
+    void deleteMotorcycle (Integer Id);
 }
