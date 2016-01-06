@@ -1,11 +1,10 @@
 package com.motorcycles.entities;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name = "pictures", catalog = "moto_shop")
-public class Pictures {
+public class Picture {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,9 +15,6 @@ public class Pictures {
 
     @Column(name = "description", nullable = true, insertable = true, updatable = true, length = 255)
     private String description;
-
-    @ManyToMany(mappedBy = "pictures")
-    private Set<Motorcycle> motorcycles;
 
     public Integer getId() {
         return id;
@@ -49,9 +45,9 @@ public class Pictures {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Pictures pictures = (Pictures) o;
+        Picture picture = (Picture) o;
 
-        return id.equals(pictures.id);
+        return id.equals(picture.id);
 
     }
 

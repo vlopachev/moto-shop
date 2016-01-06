@@ -115,11 +115,9 @@ public class Motorcycle {
             , inverseJoinColumns = {@JoinColumn(name = "equipment_id", referencedColumnName = "id")})
     private Set<Equipment> equipments;
 
-    @ManyToMany
-    @JoinTable(name = "pictures_items"
-        , joinColumns = {@JoinColumn(name = "motorcycle_id", referencedColumnName = "id")}
-        , inverseJoinColumns = {@JoinColumn(name = "pictures_id", referencedColumnName = "id")})
-    private Set<Pictures> pictures;
+    @OneToOne
+    @JoinColumn(name = "picture_id")
+    private Picture picture;
 
     public Integer getId() {
         return id;
@@ -361,12 +359,12 @@ public class Motorcycle {
         this.equipments = equipments;
     }
 
-    public Set<Pictures> getPictures() {
-        return pictures;
+    public Picture getPicture() {
+        return picture;
     }
 
-    public void setPictures(Set<Pictures> pictures) {
-        this.pictures = pictures;
+    public void setPicture(Picture picture) {
+        this.picture = picture;
     }
 
     @Override
