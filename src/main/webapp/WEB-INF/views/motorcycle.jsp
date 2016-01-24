@@ -12,6 +12,7 @@
     <div>
         <form:label path="modelName">Модель мотоцикла</form:label>
         <form:input path="modelName"/>
+        <form:errors path="modelName" cssClass="validate_error"/>
     </div>
 
 

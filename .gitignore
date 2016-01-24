@@ -37,6 +37,8 @@
 
 # IntelliJ
 /out/
+lib/
+*.js
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/

@@ -1,6 +1,7 @@
 package com.motorcycles.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
 
@@ -13,6 +14,7 @@ public class Motorcycle {
     private Integer id;
 
     @Column(name = "model_name", insertable = true, updatable = true, length = 255)
+    @Size(min = 1, message = "введите название модели")
     private String modelName;
 
     @ManyToOne
@@ -374,12 +376,97 @@ public class Motorcycle {
 
         Motorcycle that = (Motorcycle) o;
 
-        return id.equals(that.id);
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (modelName != null ? !modelName.equals(that.modelName) : that.modelName != null)
+            return false;
+        if (classMotorcycle != null ? !classMotorcycle.equals(that.classMotorcycle) : that.classMotorcycle != null)
+            return false;
+        if (brand != null ? !brand.equals(that.brand) : that.brand != null) return false;
+        if (motorType != null ? !motorType.equals(that.motorType) : that.motorType != null)
+            return false;
+        if (locationCylindersType != null ? !locationCylindersType.equals(that.locationCylindersType) : that.locationCylindersType != null)
+            return false;
+        if (motorCapacity != null ? !motorCapacity.equals(that.motorCapacity) : that.motorCapacity != null)
+            return false;
+        if (power != null ? !power.equals(that.power) : that.power != null) return false;
+        if (maxSpeed != null ? !maxSpeed.equals(that.maxSpeed) : that.maxSpeed != null)
+            return false;
+        if (numberCylinders != null ? !numberCylinders.equals(that.numberCylinders) : that.numberCylinders != null)
+            return false;
+        if (driveType != null ? !driveType.equals(that.driveType) : that.driveType != null)
+            return false;
+        if (electricStarter != null ? !electricStarter.equals(that.electricStarter) : that.electricStarter != null)
+            return false;
+        if (coolingType != null ? !coolingType.equals(that.coolingType) : that.coolingType != null)
+            return false;
+        if (fuelSupplyType != null ? !fuelSupplyType.equals(that.fuelSupplyType) : that.fuelSupplyType != null)
+            return false;
+        if (fuelTankCapacity != null ? !fuelTankCapacity.equals(that.fuelTankCapacity) : that.fuelTankCapacity != null)
+            return false;
+        if (frontSuspensionType != null ? !frontSuspensionType.equals(that.frontSuspensionType) : that.frontSuspensionType != null)
+            return false;
+        if (controlFrontSuspension != null ? !controlFrontSuspension.equals(that.controlFrontSuspension) : that.controlFrontSuspension != null)
+            return false;
+        if (backSuspensionType != null ? !backSuspensionType.equals(that.backSuspensionType) : that.backSuspensionType != null)
+            return false;
+        if (controlBackSuspension != null ? !controlBackSuspension.equals(that.controlBackSuspension) : that.controlBackSuspension != null)
+            return false;
+        if (frontBrakeType != null ? !frontBrakeType.equals(that.frontBrakeType) : that.frontBrakeType != null)
+            return false;
+        if (backBrakeType != null ? !backBrakeType.equals(that.backBrakeType) : that.backBrakeType != null)
+            return false;
+        if (frontWheel != null ? !frontWheel.equals(that.frontWheel) : that.frontWheel != null)
+            return false;
+        if (backWheel != null ? !backWheel.equals(that.backWheel) : that.backWheel != null)
+            return false;
+        if (wheelbase != null ? !wheelbase.equals(that.wheelbase) : that.wheelbase != null)
+            return false;
+        if (groundClearance != null ? !groundClearance.equals(that.groundClearance) : that.groundClearance != null)
+            return false;
+        if (length != null ? !length.equals(that.length) : that.length != null) return false;
+        if (width != null ? !width.equals(that.width) : that.width != null) return false;
+        if (height != null ? !height.equals(that.height) : that.height != null) return false;
+        if (dryWeight != null ? !dryWeight.equals(that.dryWeight) : that.dryWeight != null)
+            return false;
+        if (equipments != null ? !equipments.equals(that.equipments) : that.equipments != null)
+            return false;
+        return !(picture != null ? !picture.equals(that.picture) : that.picture != null);
 
     }
 
     @Override
     public int hashCode() {
-        return id.hashCode();
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (modelName != null ? modelName.hashCode() : 0);
+        result = 31 * result + (classMotorcycle != null ? classMotorcycle.hashCode() : 0);
+        result = 31 * result + (brand != null ? brand.hashCode() : 0);
+        result = 31 * result + (motorType != null ? motorType.hashCode() : 0);
+        result = 31 * result + (locationCylindersType != null ? locationCylindersType.hashCode() : 0);
+        result = 31 * result + (motorCapacity != null ? motorCapacity.hashCode() : 0);
+        result = 31 * result + (power != null ? power.hashCode() : 0);
+        result = 31 * result + (maxSpeed != null ? maxSpeed.hashCode() : 0);
+        result = 31 * result + (numberCylinders != null ? numberCylinders.hashCode() : 0);
+        result = 31 * result + (driveType != null ? driveType.hashCode() : 0);
+        result = 31 * result + (electricStarter != null ? electricStarter.hashCode() : 0);
+        result = 31 * result + (coolingType != null ? coolingType.hashCode() : 0);
+        result = 31 * result + (fuelSupplyType != null ? fuelSupplyType.hashCode() : 0);
+        result = 31 * result + (fuelTankCapacity != null ? fuelTankCapacity.hashCode() : 0);
+        result = 31 * result + (frontSuspensionType != null ? frontSuspensionType.hashCode() : 0);
+        result = 31 * result + (controlFrontSuspension != null ? controlFrontSuspension.hashCode() : 0);
+        result = 31 * result + (backSuspensionType != null ? backSuspensionType.hashCode() : 0);
+        result = 31 * result + (controlBackSuspension != null ? controlBackSuspension.hashCode() : 0);
+        result = 31 * result + (frontBrakeType != null ? frontBrakeType.hashCode() : 0);
+        result = 31 * result + (backBrakeType != null ? backBrakeType.hashCode() : 0);
+        result = 31 * result + (frontWheel != null ? frontWheel.hashCode() : 0);
+        result = 31 * result + (backWheel != null ? backWheel.hashCode() : 0);
+        result = 31 * result + (wheelbase != null ? wheelbase.hashCode() : 0);
+        result = 31 * result + (groundClearance != null ? groundClearance.hashCode() : 0);
+        result = 31 * result + (length != null ? length.hashCode() : 0);
+        result = 31 * result + (width != null ? width.hashCode() : 0);
+        result = 31 * result + (height != null ? height.hashCode() : 0);
+        result = 31 * result + (dryWeight != null ? dryWeight.hashCode() : 0);
+        result = 31 * result + (equipments != null ? equipments.hashCode() : 0);
+        result = 31 * result + (picture != null ? picture.hashCode() : 0);
+        return result;
     }
 }

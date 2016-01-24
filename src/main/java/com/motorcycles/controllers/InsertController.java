@@ -7,10 +7,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.validation.Valid;
 
 @Controller
 public class InsertController {
@@ -21,12 +24,12 @@ public class InsertController {
 
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
-    private String main(@ModelAttribute Motorcycle motorcycle){
+    private String main(@ModelAttribute Motorcycle motorcycle) {
         return "motorcycle";
     }
 
     @ModelAttribute
-    private void populateModel(Model model){
+    private void populateModel(Model model) {
         model.addAttribute("classesMotorcycles", service.getAllClassesMotorcycles());
         model.addAttribute("brandsMotorcycles", service.getAllBrandsMotorcycles());
         model.addAttribute("motorTypes", service.getAllMotorTypes());
@@ -63,90 +66,93 @@ public class InsertController {
     }
 
     @RequestMapping(value = "/newMotorType", method = RequestMethod.GET)
-    private String newMotorType(@ModelAttribute MotorType motorType){
+    private String newMotorType(@ModelAttribute MotorType motorType) {
         return "motor_types";
     }
 
     @RequestMapping(value = "/saveMotorType", method = RequestMethod.POST)
-    private String saveMotorType(MotorType motorType){
+    private String saveMotorType(MotorType motorType) {
         service.save(motorType);
         return "redirect:/admin";
     }
 
     @RequestMapping(value = "/newLocationCylindersType", method = RequestMethod.GET)
-    private String newLocationCylindersType(@ModelAttribute LocationCylindersType locationCylindersType){
+    private String newLocationCylindersType(@ModelAttribute LocationCylindersType locationCylindersType) {
         return "location_cylinders_types";
     }
 
     @RequestMapping(value = "/saveLocationCylindersType", method = RequestMethod.POST)
-    private String saveLocationCylindersType(LocationCylindersType locationCylindersType){
+    private String saveLocationCylindersType(LocationCylindersType locationCylindersType) {
         service.save(locationCylindersType);
         return "redirect:/admin";
     }
 
     @RequestMapping(value = "/newDriveType", method = RequestMethod.GET)
-    private String newDriveType(@ModelAttribute DriveType driveType){
+    private String newDriveType(@ModelAttribute DriveType driveType) {
         return "drive_types";
     }
 
     @RequestMapping(value = "/saveDriveType", method = RequestMethod.POST)
-    private String saveDriveType(DriveType driveType){
+    private String saveDriveType(DriveType driveType) {
         service.save(driveType);
         return "redirect:/admin";
     }
 
     @RequestMapping(value = "/newCoolingType", method = RequestMethod.GET)
-    private String newCoolingType(@ModelAttribute CoolingType coolingType){
+    private String newCoolingType(@ModelAttribute CoolingType coolingType) {
         return "cooling_types";
     }
 
     @RequestMapping(value = "/saveCoolingType", method = RequestMethod.POST)
-    private String saveCoolingType(CoolingType coolingType){
+    private String saveCoolingType(CoolingType coolingType) {
         service.save(coolingType);
         return "redirect:/admin";
     }
 
     @RequestMapping(value = "/newFuelSupplyType", method = RequestMethod.GET)
-    private String newFuelSupplyType(@ModelAttribute FuelSupplyType fuelSupplyType){
+    private String newFuelSupplyType(@ModelAttribute FuelSupplyType fuelSupplyType) {
         return "fuel_supply_types";
     }
 
     @RequestMapping(value = "/saveFuelSupplyType", method = RequestMethod.POST)
-    private String saveFuelSupplyType(FuelSupplyType fuelSupplyType){
+    private String saveFuelSupplyType(FuelSupplyType fuelSupplyType) {
         service.save(fuelSupplyType);
         return "redirect:/admin";
     }
 
     @RequestMapping(value = "/newFrontSuspensionType", method = RequestMethod.GET)
-    private String newFrontSuspensionType(@ModelAttribute FrontSuspensionType frontSuspensionType){
+    private String newFrontSuspensionType(@ModelAttribute FrontSuspensionType frontSuspensionType) {
         return "front_suspension_types";
     }
 
     @RequestMapping(value = "/saveFrontSuspensionType", method = RequestMethod.POST)
-    private String saveFrontSuspensionType(FrontSuspensionType frontSuspensionType){
+    private String saveFrontSuspensionType(FrontSuspensionType frontSuspensionType) {
         service.save(frontSuspensionType);
         return "redirect:/admin";
     }
 
     @RequestMapping(value = "/newBackSuspensionType", method = RequestMethod.GET)
-    private String newBackSuspensionType(@ModelAttribute BackSuspensionType backSuspensionType){
+    private String newBackSuspensionType(@ModelAttribute BackSuspensionType backSuspensionType) {
         return "back_suspension_types";
     }
 
     @RequestMapping(value = "/saveBackSuspensionType", method = RequestMethod.POST)
-    private String saveBackSuspensionType(BackSuspensionType backSuspensionType){
+    private String saveBackSuspensionType(BackSuspensionType backSuspensionType) {
         service.save(backSuspensionType);
         return "redirect:/admin";
     }
 
     @RequestMapping(value = "/saveMotorcycle", method = RequestMethod.POST)
-    private String saveMotorcycle(Motorcycle motorcycle) {
-          service.save(motorcycle);
+    private String saveMotorcycle(@Valid Motorcycle motorcycle, BindingResult result) {
+        if (result.hasErrors()) {
+            return "motorcycle";
+        }
+        service.save(motorcycle);
         return "redirect:/admin";
     }
 
     @RequestMapping(value = "/delete/{ownerId}", method = RequestMethod.GET)
-    private String deleteMotorcycle(@PathVariable Integer ownerId){
+    private String deleteMotorcycle(@PathVariable Integer ownerId) {
         service.deleteMotorcycle(ownerId);
         return "redirect:/admin";
     }
